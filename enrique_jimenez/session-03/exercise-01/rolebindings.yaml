@@ -1,0 +1,103 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: sre
+subjects:
+- kind: Group
+  name: sre
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: sre
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: devs-read-teamvision
+  namespace: team-vision
+subjects:
+- kind: Group
+  name: team-vision
+  apiGroup: rbac.authorization.k8s.io
+- kind: Group
+  name: api
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: see-resources-teamvision
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: devs-read-teamapi
+  namespace: team-api
+subjects:
+- kind: Group
+  name: team-vision
+  apiGroup: rbac.authorization.k8s.io
+- kind: Group
+  name: api
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: see-resources-teamapi
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: api-create
+  namespace: team-api
+subjects:
+- kind: Group
+  name: api
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: create-resources-teamapi
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: teamvision-create
+  namespace: team-vision
+subjects:
+- kind: Group
+  name: vision
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: create-resources-teamvision
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: teachlead
+  namespace: team-vision
+subjects:
+- kind: Group
+  name: vision
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: teach-lead-teamvision
+  apiGroup: rbac.authorization.k8s.io
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: teachlead
+  namespace: team-api
+subjects:
+- kind: Group
+  name: api
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: teach-lead-teamapi
+  apiGroup: rbac.authorization.k8s.io
+

@@ -1,0 +1,68 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: sre
+rules:
+- apiGroups: ["*"] # "" indicates the core API group
+  resources: ["*"]
+  verbs: ["*"]
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: team-vision
+  name: see-resources-teamvision
+rules:
+- apiGroups: ["*"] # "" indicates the core API group
+  resources: ["*"]
+  verbs: ["get", "watch", "list"]
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: team-api
+  name: see-resources-teamapi
+rules:
+- apiGroups: ["*"] # "" indicates the core API group
+  resources: ["*"]
+  verbs: ["get", "watch", "list"]
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: team-api
+  name: create-resources-teamapi
+rules:
+- apiGroups: ["*"] # "" indicates the core API group
+  resources: ["*"]
+  verbs: ["get", "watch", "list", "create", "patch"]
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: team-vision
+  name: create-resources-teamvision
+rules:
+- apiGroups: ["*"] # "" indicates the core API group
+  resources: ["pod","configMaps","service","deployment"," pv", "replicateSets", "ingress", "namespace", "daemonset","job", "nodejs", "cronjob", "pvc"]
+  verbs: ["*"]
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: team-api
+  name: teach-lead-teamapi
+rules:
+- apiGroups: ["*"] # "" indicates the core API group
+  resources: ["pod","configMaps","service","deployment"," pv", "replicateSets", "ingress", "namespace", "daemonset","job", "nodejs", "cronjob", "pvc"]
+  verbs: ["*"]
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: team-vision
+  name: teach-lead-teamvision
+rules:
+- apiGroups: ["*"] # "" indicates the core API group
+  resources: ["pod","configMaps","service","deployment"," pv", "replicateSets", "ingress", "namespace", "daemonset","job", "nodejs", "cronjob", "pvc"]
+  verbs: ["*"]
